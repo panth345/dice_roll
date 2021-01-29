@@ -1,0 +1,93 @@
+<html> 
+  
+<head> 
+    <title>Dice Game</title> 
+	 <link rel="stylesheet" href="dice_style.css"></link>
+</head> 
+  
+<body> 
+    <div class="container"> 
+        <h1>Start the same</h1> 
+  
+        <div class="dice"> 
+            <p class="Player1">Player 1</p> 
+            <img class="img1" src="Diceimage/dice6.png"> 
+        </div> 
+  
+        <div class="dice"> 
+            <p class="Player2">Player 2</p> 
+            <img class="img2" src="Diceimage/dice6.png"> 
+        </div> 
+    </div> 
+  
+    <div class="container bottom"> 
+        <button type="button" class="butn"
+            onClick="rollTheDice()"> 
+            Roll the Dice 
+        </button> 
+    </div> 
+	
+	 <div class="scoreboard">
+	<p id="s1">Player1: Score : 6</p>
+	<p id="s2">Player2: Score : 6</p>
+	<h2 class="result">Result: </h2>
+	
+   </div>
+
+<script>
+    // Function to roll the dice 
+    function rollTheDice() { 
+	
+	var sum = 0;
+            var randomNumber1 = Math.floor(Math.random() * 6) + 1; //1-6
+
+var randomDiceImage = "dice" + randomNumber1 + ".png"; //dice1.png - dice6.png
+
+var randomImageSource = "Diceimage/" + randomDiceImage; //images/dice1.png - images/dice6.png
+
+var image1 = document.querySelectorAll("img")[0];
+
+image1.setAttribute("src", randomImageSource);
+
+
+var randomNumber2 = Math.floor(Math.random() * 6) + 1;
+
+var randomImageSource2 = "Diceimage/dice" + randomNumber2 + ".png";
+
+document.querySelectorAll("img")[1].setAttribute("src", randomImageSource2);
+
+            if (randomNumber1 === randomNumber2) { 
+                document.querySelector("h1").innerHTML = "Draw!";
+				
+			document.getElementById("s1").innerHTML = ("Player 1 : Score: 0");
+				document.getElementById("s2").innerHTML = ("Player 2 : Score: 0");
+			} 
+             
+  
+            else if (randomNumber1 < randomNumber2) { 
+                document.querySelector("h1").innerHTML 
+                                = ("player2 WINS!"); 
+								sum = randomNumber2-randomNumber1;
+								
+								
+				document.getElementById("s1").innerHTML = ("Player 1 : Score: 0");
+				document.getElementById("s2").innerHTML = ("Player 2 : Score: " + sum);		
+			
+            } 
+  
+            else { 
+                document.querySelector("h1").innerHTML 
+                                = ("player1 WINS!"); 
+								
+						sum = randomNumber1-randomNumber2;
+								
+document.getElementById("s1").innerHTML = ("Player 1 : Score: "+ sum);
+				document.getElementById("s2").innerHTML = ("Player 2 : Score: 0");
+            } 
+        }
+ 
+</script> 
+	
+</body> 
+  
+</html> 
